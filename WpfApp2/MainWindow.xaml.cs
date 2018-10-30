@@ -22,6 +22,9 @@ namespace WpfApp2
             {
                 MessageBox.Show("Победа!!!");
                 Fifteen.Start();
+                for (int j = 0; j < 100; j++)
+                    Fifteen.RandomShift();
+                Refresh();
             }
         }
 
