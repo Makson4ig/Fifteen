@@ -45,6 +45,17 @@ namespace WpfApp2
         public void RandomShift() // Перемешивание 
         {
             Shift(Rand.Next(0, Size * Size));
+            int a = Rand.Next(0, 4);
+            int x = space_x;
+            int y = space_y;
+            switch (a)
+            {
+                case 0: x--; break;
+                case 1: x++; break;
+                case 2: y--; break;
+                case 3: y++; break;
+            }
+            Shift(Coords_to_position(x,y));
         }
 
         public int Number(int Position) // Вычисление номера кнопки 
@@ -58,11 +69,17 @@ namespace WpfApp2
         }
         private int Coords_to_position(int x, int y) // Вычисление положения позиции 
         {
+            if (x < 0) x = 0;
+            if (x > Size - 1) x = Size - 1;
+            if (y < 0) y = 0;
+            if (y > Size - 1) y = Size - 1;
             return y * Size + x;
         }
 
         private void Position_to_coords(int position,out int x, out int y) // Вычисление положения координат 
         {
+            if (position < 0) position = 0;
+            if (position > Size * Size - 1) position = Size * Size - 1;
             x = position % Size;
             y = position / Size;
         }
